@@ -1,0 +1,66 @@
+name: Deploy to Cloudflare
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy-backend:
+    name: Deploy Backend to Cloudflare Workers
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
+          
+      - name: Install dependencies
+        working-directory: ./donation-management/donation-management-back
+        run: pnpm install
+        
+      - name: Deploy to Cloudflare Workers
+        working-directory: ./donation-management/donation-management-back
+        run: pnpm run deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+  deploy-frontend:
+    name: Deploy Frontend to Cloudflare Pages
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
+          
+      - name: Install dependencies
+        working-directory: ./donation-management/donation-management-front
+        run: pnpm install
+        
+      - name: Build
+        working-directory: ./donation-management/donation-management-front
+        run: pnpm run build
+        
+      - name: Deploy to Cloudflare Pages
+        working-directory: ./donation-management/donation-management-front
+        run: pnpm run deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
