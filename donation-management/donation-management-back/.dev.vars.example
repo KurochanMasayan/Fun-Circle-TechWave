@@ -1,0 +1,4 @@
+# HINT: このファイルをコピーして.dev.varsにリネームして実際の値を設定してください
+
+SUPABASE_URL=https://your-project-id.supabase.co
+SUPABASE_ANON_KEY=your-anon-key-here 

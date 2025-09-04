@@ -167,6 +167,8 @@ dist
 .pnp.\*
 
 # wrangler project
-
-.dev.vars
 .wrangler/
+
+# dotdev_dotvars
+.dev.vars*
+!.dev.vars.example

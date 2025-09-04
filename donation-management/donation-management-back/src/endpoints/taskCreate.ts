@@ -1,6 +1,7 @@
 import { Bool, OpenAPIRoute } from "chanfana";
 import { z } from "zod";
 import { type AppContext, Task } from "../types";
+import { createSupabaseClient } from "../lib/supabase";
 
 export class TaskCreate extends OpenAPIRoute {
 	schema = {
@@ -41,18 +42,36 @@ export class TaskCreate extends OpenAPIRoute {
 		// Retrieve the validated request body
 		const taskToCreate = data.body;
 
-		// Implement your own object insertion here
-
-		// return the new task
-		return {
-			success: true,
-			task: {
+		// Supabaseにタスクを挿入
+		const supabase = createSupabaseClient(c.env);
+		const { data: newTask, error } = await supabase
+			.from('tasks')
+			.insert([{
 				name: taskToCreate.name,
 				slug: taskToCreate.slug,
 				description: taskToCreate.description,
 				completed: taskToCreate.completed,
 				due_date: taskToCreate.due_date,
-			},
+			}])
+			.select()
+			.single();
+
+		if (error) {
+			return c.json(
+				{
+					success: false,
+					error: error.message,
+				},
+				{
+					status: 500,
+				},
+			);
+		}
+
+		// return the new task
+		return {
+			success: true,
+			task: newTask,
 		};
 	}
 }

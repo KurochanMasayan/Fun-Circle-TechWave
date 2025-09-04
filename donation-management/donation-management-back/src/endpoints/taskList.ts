@@ -1,6 +1,7 @@
 import { Bool, Num, OpenAPIRoute } from "chanfana";
 import { z } from "zod";
 import { type AppContext, Task } from "../types";
+import { createSupabaseClient } from "../lib/supabase";
 
 export class TaskList extends OpenAPIRoute {
 	schema = {
@@ -44,26 +45,28 @@ export class TaskList extends OpenAPIRoute {
 		// Retrieve the validated parameters
 		const { page, isCompleted } = data.query;
 
-		// Implement your own object list here
+		// Supabaseからタスク一覧を取得
+		const supabase = createSupabaseClient(c.env);
+		const { data: tasks, error } = await supabase
+			.from('tasks')
+			.select('*')
+			.order('created_at', { ascending: false });
+
+		if (error) {
+			return c.json(
+				{
+					success: false,
+					error: error.message,
+				},
+				{
+					status: 500,
+				},
+			);
+		}
 
 		return {
 			success: true,
-			tasks: [
-				{
-					name: "Clean my room",
-					slug: "clean-room",
-					description: null,
-					completed: false,
-					due_date: "2025-01-05",
-				},
-				{
-					name: "Build something awesome with Cloudflare Workers",
-					slug: "cloudflare-workers",
-					description: "Lorem Ipsum",
-					completed: true,
-					due_date: "2022-12-24",
-				},
-			],
+			tasks: tasks || [],
 		};
 	}
 }
