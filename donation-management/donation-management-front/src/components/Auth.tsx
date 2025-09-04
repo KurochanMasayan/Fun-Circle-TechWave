@@ -22,8 +22,9 @@ export default function AuthComponent() {
         const { error } = await supabase.auth.signInWithPassword({ email, password })
         if (error) throw error
       }
-    } catch (error: any) {
-      setMessage(error.message || 'エラーが発生しました')
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'エラーが発生しました'
+      setMessage(errorMessage)
     } finally {
       setLoading(false)
     }
@@ -38,8 +39,9 @@ export default function AuthComponent() {
         }
       })
       if (error) throw error
-    } catch (error: any) {
-      setMessage(error.message || 'エラーが発生しました')
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'エラーが発生しました'
+      setMessage(errorMessage)
     }
   }
 
