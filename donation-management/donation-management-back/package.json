@@ -6,6 +6,9 @@
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
     "start": "wrangler dev",
+    "build": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo 'Linting not configured yet'",
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
