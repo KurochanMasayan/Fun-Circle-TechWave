@@ -1,0 +1,183 @@
+{
+    "permissions": {
+      "allow": [
+        "Bash(npm run build:*)",
+        "Bash(npm run lint)",
+        "Bash(npm run fsd)",
+        "Bash(npm run format)",
+        "Bash(npx biome format:*)",
+        "Bash(npx biome check:*)",
+        "Bash(ls:*)",
+        "Bash(npm ls:*)",
+        "Bash(git status)",
+        "Bash(git diff:*)",
+        "Bash(git log:*)",
+        "Bash(git add:*)",
+        "Bash(git checkout client/**)",
+        "Bash(git checkout server/**)",
+        "Bash(git checkout admin/**)",
+        "Bash(git checkout gateway/**)",
+        "Bash(git checkout feat/*)",
+        "Bash(git checkout fix/*)",
+        "Bash(git pull origin feat/*)",
+        "Bash(git pull origin fix/*)",
+        "Bash(gh pr view:*)",
+        "Bash(gh pr list:*)",
+        "Bash(gh pr create:*)",
+        "Read(client:*)",
+        "Read(server:*)",
+        "Read(gateway:**)",
+        "Read(infrastructure:**)",
+        "Read(CLAUDE.md)",
+        "Read(package.json)",
+        "Edit(client:*)",
+        "Edit(server:*)",
+        "Edit(gateway:*)",
+        "Edit(infrastructure:*)",
+        "Edit(CLAUDE.md)",
+        "mcp__figma-developer-mcp__get_figma_data",
+        "mcp__figma-developer-mcp__download_figma_images",
+        "mcp__figma-dev-mode-mcp-server__get_code",
+        "mcp__figma-dev-mode-mcp-server__get_variable_defs",
+        "mcp__figma-dev-mode-mcp-server__get_code_connect_map",
+        "mcp__figma-dev-mode-mcp-server__get_image",
+        "mcp__figma-dev-mode-mcp-server__create_design_system_rules",
+        "mcp__context7__resolve-library-id",
+        "mcp__context7__get-library-docs",
+        "mcp__playwright__browser_navigate",
+        "mcp__playwright__browser_navigate_back",
+        "mcp__playwright__browser_resize",
+        "mcp__playwright__browser_close",
+        "mcp__playwright__browser_console_messages",
+        "mcp__playwright__browser_handle_dialog",
+        "mcp__playwright__browser_evaluate",
+        "mcp__playwright__browser_file_upload",
+        "mcp__playwright__browser_fill_form",
+        "mcp__playwright__browser_install",
+        "mcp__playwright__browser_press_key",
+        "mcp__playwright__browser_type",
+        "mcp__playwright__browser_network_requests",
+        "mcp__playwright__browser_take_screenshot",
+        "mcp__playwright__browser_snapshot",
+        "mcp__playwright__browser_click",
+        "mcp__playwright__browser_drag",
+        "mcp__playwright__browser_hover",
+        "mcp__playwright__browser_select_option",
+        "mcp__playwright__browser_tabs",
+        "mcp__playwright__browser_wait_for",
+        "mcp__playwright__*",
+        "mcp__notion__search",
+        "mcp__notion__fetch",
+        "mcp__jira__getAccessibleAtlassianResources",
+        "mcp__jira__searchJiraIssuesUsingJql",
+        "mcp__o3__o3-search",
+        "Bash(npm run typecheck:*)",
+        "Bash(npm run codegen:*)",
+        "Bash(npm run ts-check:*)",
+        "Bash(npx playwright test login.spec.ts --headed)"
+      ],
+      "deny": [
+        "Bash(sudo:*)",
+        "Bash(rm:*)",
+        "Bash(rm -rf:*)",
+        "Bash(git reset:*)",
+        "Bash(git rebase:*)",
+        "Bash(git push)",
+        "Bash(git push -f)",
+        "Bash(git push --force)",
+        "Bash(git push --force-with-lease)",
+        "Bash(git push --tags)",
+        "Bash(git push origin v:*)",
+        "Bash(git push -u origin v:*)",
+        "Bash(git push -f origin v:*)",
+        "Bash(git push --force origin v:*)",
+        "Bash(git push --force-with-lease origin v:*)",
+        "Bash(git push -u origin v:* --force)",
+        "Bash(git push --all)",
+        "Bash(git push origin --delete *)",
+        "Bash(git push origin main)",
+        "Bash(git push -u origin main)",
+        "Bash(git push -u origin main --force)",
+        "Bash(git push --set-upstream origin main)",
+        "Bash(git push -f origin main)",
+        "Bash(git push --force origin main)",
+        "Bash(git push --force-with-lease origin main)",
+        "Bash(git push origin HEAD:main:*)",
+        "Bash(git push origin +HEAD:main:*)",
+        "Bash(git push origin +main:*)",
+        "Bash(npm install:*)",
+        "Bash(npx prisma migrate:*)",
+        "Bash(npx prisma db push)",
+        "Bash(npx prisma db reset)",
+        "Bash(psql:*)",
+        "Bash(mysql:*)",
+        "Bash(mongod:*)",
+        "Bash(docker rmi:*)",
+        "Bash(docker rm:*)",
+        "Bash(docker compose down:*)",
+        "Bash(docker compose stop:*)"
+      ],
+      "ask": [
+        "Bash(git push -u origin feat:*)",
+        "Bash(git push -u origin fix:*)",
+        "Bash(git push -u origin chore:*)",
+        "Bash(git push -u origin test:*)",
+        "Bash(git push -u origin docs:*)"
+      ]
+    },
+    "enableAllProjectMcpServers": true,
+    "enabledMcpjsonServers": [
+      "playwright",
+      "figma-developer-mcp",
+      "figma-official",
+      "context7",
+      "notion",
+      "jira",
+      "o3"
+    ],
+    "hooks": {
+      "Notification": [
+        {
+          "matcher": "",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "echo \"承認依頼通知です\" | logger -t claude-code"
+            }
+          ]
+        }
+      ],
+      "Stop": [
+        {
+          "matcher": "",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "echo \"タスク完了通知です\" | logger -t claude-code"
+            }
+          ]
+        }
+      ],
+      "PostToolUse": [
+        {
+          "matcher": "Edit(client/**)|MultiEdit(client/**)|Write(client/**)",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "cd client && npm run ts-check 2>&1 || echo 'TypeScript check failed'"
+            }
+          ]
+        },
+        {
+          "matcher": "Edit(server/**)|MultiEdit(server/**)|Write(server/**)",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "cd server && npm run ts-check 2>&1 || echo 'TypeScript check failed'"
+            }
+          ]
+        }
+      ]
+    },
+    "ask": [""]
+  }

@@ -1,0 +1,40 @@
+.badge {
+  display: inline-block;
+  border-radius: 0.375rem;
+  font-weight: 500;
+}
+
+.badgeSmall {
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+.badgeMedium {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.badgeDefault {
+  background-color: #f3f4f6;
+  color: #4b5563;
+}
+
+.badgePrimary {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+
+.badgeSuccess {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.badgeWarning {
+  background-color: #fed7aa;
+  color: #92400e;
+}
+
+.badgeDanger {
+  background-color: #fee2e2;
+  color: #991b1b;
+}

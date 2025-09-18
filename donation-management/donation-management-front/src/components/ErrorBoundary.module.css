@@ -1,0 +1,56 @@
+.errorBoundary {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.errorContent {
+  background: white;
+  border-radius: 1rem;
+  padding: var(--spacing-2xl);
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.errorTitle {
+  font-size: var(--text-2xl);
+  color: var(--color-text);
+  margin-bottom: var(--spacing-md);
+}
+
+.errorMessage {
+  color: #6b7280;
+  font-size: var(--text-base);
+  margin-bottom: var(--spacing-xl);
+  line-height: 1.6;
+}
+
+.errorDetails {
+  background: #f9fafb;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+  text-align: left;
+}
+
+.errorDetails summary {
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-sm);
+}
+
+.errorDetails pre {
+  margin: var(--spacing-sm) 0 0;
+  font-size: var(--text-sm);
+  color: #ef4444;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}

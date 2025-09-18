@@ -1,0 +1,84 @@
+.dashboard {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #f0f9ff, #ffffff);
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboardHeader {
+  background: white;
+  padding: var(--spacing-md) var(--spacing-lg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.dashboardTitle {
+  font-size: var(--text-xl);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.userEmail {
+  color: #4b5563;
+  font-size: var(--text-sm);
+}
+
+.dashboardContent {
+  flex: 1;
+  padding: var(--spacing-lg);
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.welcomeCard {
+  width: 100%;
+}
+
+.welcomeTitle {
+  font-size: var(--text-xl);
+  color: var(--color-text);
+  margin-bottom: var(--spacing-md);
+}
+
+.welcomeDescription {
+  color: #6b7280;
+  font-size: var(--text-base);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-xl);
+}
+
+.quickActions {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+/* md: 768px以上 */
+@media (min-width: 768px) {
+  .dashboardHeader {
+    padding: var(--spacing-lg) var(--spacing-xl);
+  }
+  
+  .dashboardTitle {
+    font-size: var(--text-2xl);
+  }
+  
+  .dashboardContent {
+    padding: var(--spacing-xl);
+  }
+  
+  .welcomeTitle {
+    font-size: var(--text-2xl);
+  }
+}
