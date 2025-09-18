@@ -1,0 +1,70 @@
+.card {
+  background: white;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.cardDefault {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.cardElevated {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.cardBordered {
+  border: 1px solid #e5e7eb;
+  box-shadow: none;
+}
+
+.cardHeader {
+  padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-md);
+  text-align: center;
+}
+
+.cardContent {
+  padding: 0 var(--spacing-lg) var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* md: 768px以上 */
+@media (min-width: 768px) {
+  .card {
+    border-radius: 0.75rem;
+  }
+  
+  .cardHeader {
+    padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-lg);
+  }
+  
+  .cardContent {
+    padding: 0 var(--spacing-xl) var(--spacing-xl);
+    gap: var(--spacing-lg);
+  }
+}
+
+.cardTitle {
+  font-size: var(--text-xl);
+  font-weight: bold;
+  color: var(--color-text);
+  margin: 0 0 var(--spacing-sm);
+}
+
+.cardDescription {
+  color: #6b7280;
+  font-size: var(--text-sm);
+  margin: 0;
+}
+
+/* md: 768px以上 */
+@media (min-width: 768px) {
+  .cardTitle {
+    font-size: var(--text-2xl);
+  }
+  
+  .cardDescription {
+    font-size: var(--text-base);
+  }
+}
