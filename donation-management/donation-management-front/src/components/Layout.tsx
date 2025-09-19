@@ -7,7 +7,7 @@ import styles from './Layout.module.css'
 
 interface LayoutProps {
   user: User
-  onSignOut: () => void
+  onSignOut: () => Promise<void>
   children: ReactNode
 }
 

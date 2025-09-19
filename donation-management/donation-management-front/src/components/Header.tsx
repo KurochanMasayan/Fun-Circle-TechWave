@@ -18,7 +18,7 @@ import styles from './Header.module.css'
 interface HeaderProps {
   user: User
   onMenuClick: () => void
-  onSignOut: () => void
+  onSignOut: () => Promise<void>
 }
 
 export default function Header({ user, onMenuClick, onSignOut }: HeaderProps) {
@@ -49,6 +49,15 @@ export default function Header({ user, onMenuClick, onSignOut }: HeaderProps) {
   const getUserInitials = () => {
     const name = getUserName()
     return name.slice(0, 2).toUpperCase()
+  }
+
+  const handleSignOut = async () => {
+    try {
+      await onSignOut()
+    } catch (error) {
+      console.error('ログアウトに失敗しました:', error)
+      // TODO: ユーザーにエラーメッセージを表示
+    }
   }
 
   return (
@@ -143,7 +152,7 @@ export default function Header({ user, onMenuClick, onSignOut }: HeaderProps) {
                   <span>ヘルプ（準備中）</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className={styles.logoutItem} onClick={onSignOut}>
+                <DropdownMenuItem className={styles.logoutItem} onClick={handleSignOut}>
                   <LogOutIcon size={16} />
                   <span>ログアウト</span>
                 </DropdownMenuItem>
