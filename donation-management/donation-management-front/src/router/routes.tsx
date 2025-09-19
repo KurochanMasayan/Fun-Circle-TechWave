@@ -3,20 +3,10 @@ import ProtectedRoute from './ProtectedRoute'
 import PublicRoute from './PublicRoute'
 import AuthContainer from '../containers/AuthContainer'
 import DashboardContainer from '../containers/DashboardContainer'
-import { useAuth } from '../hooks/useAuth'
-
-// ページコンポーネント（将来追加）
-const ItemsPage = () => <div>寄贈物一覧</div>
-const RegisterPage = () => <div>寄贈物登録</div>
-const ReportsPage = () => <div>レポート</div>
-const NotFound = () => <div>404 - ページが見つかりません</div>
-
-// Dashboardページのラッパー
-function DashboardPage() {
-  const { user, signOut } = useAuth()
-  if (!user) return null
-  return <DashboardContainer user={user} onSignOut={signOut} />
-}
+import ItemsListContainer from '../containers/ItemsListContainer'
+import ItemRegisterContainer from '../containers/ItemRegisterContainer'
+import ReportsContainer from '../containers/ReportsContainer'
+import NotFound from '../components/NotFound'
 
 export const routes: RouteObject[] = [
   {
@@ -25,23 +15,35 @@ export const routes: RouteObject[] = [
     children: [
       {
         index: true,
-        element: <DashboardPage />
+        element: <DashboardContainer />
       },
       {
         path: 'dashboard',
-        element: <DashboardPage />
+        element: <DashboardContainer />
       },
       {
         path: 'items',
-        element: <ItemsPage />
+        element: <ItemsListContainer />
       },
       {
         path: 'items/register',
-        element: <RegisterPage />
+        element: <ItemRegisterContainer />
       },
       {
         path: 'reports',
-        element: <ReportsPage />
+        element: <ReportsContainer />
+      },
+      {
+        path: 'analytics',
+        element: <NotFound />
+      },
+      {
+        path: 'users',
+        element: <NotFound />
+      },
+      {
+        path: 'departments',
+        element: <NotFound />
       }
     ]
   },

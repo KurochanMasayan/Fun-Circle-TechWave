@@ -1,0 +1,80 @@
+.filterCard {
+  margin-bottom: var(--spacing-xl);
+}
+
+.filterContainer {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-direction: column;
+}
+
+.searchBox {
+  flex: 1;
+}
+
+.filterControls {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.loading {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  color: #6b7280;
+  font-size: var(--text-base);
+}
+
+.noData {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  color: #6b7280;
+  font-size: var(--text-base);
+}
+
+.itemName {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.itemName strong {
+  font-weight: 600;
+}
+
+.condition {
+  font-size: var(--text-sm);
+  color: #6b7280;
+}
+
+.donor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.department {
+  font-size: var(--text-sm);
+  color: #6b7280;
+}
+
+@media (min-width: 768px) {
+  .filterContainer {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .searchBox {
+    flex: 2;
+  }
+
+  .filterControls {
+    flex: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .filterControls {
+    flex-direction: column;
+    width: 100%;
+  }
+}
