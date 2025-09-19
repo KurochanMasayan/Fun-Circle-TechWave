@@ -3,18 +3,21 @@ import styles from './Badge.module.css'
 
 interface BadgeProps {
   children: ReactNode
-  variant?: 'default' | 'primary' | 'success' | 'warning' | 'danger'
+  variant?: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
   size?: 'small' | 'medium'
+  className?: string
 }
 
-export default function Badge({ 
-  children, 
+export default function Badge({
+  children,
   variant = 'default',
-  size = 'medium'
+  size = 'medium',
+  className = ''
 }: BadgeProps) {
   const variantClasses = {
     default: styles.badgeDefault,
     primary: styles.badgePrimary,
+    secondary: styles.badgeSecondary,
     success: styles.badgeSuccess,
     warning: styles.badgeWarning,
     danger: styles.badgeDanger
@@ -26,7 +29,7 @@ export default function Badge({
   }
 
   return (
-    <span className={`${styles.badge} ${variantClasses[variant]} ${sizeClasses[size]}`}>
+    <span className={`${styles.badge} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}>
       {children}
     </span>
   )

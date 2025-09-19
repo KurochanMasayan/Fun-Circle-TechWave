@@ -1,44 +1,15 @@
-.dashboard {
-  min-height: 100vh;
-  background: linear-gradient(to bottom right, #f0f9ff, #ffffff);
-  display: flex;
-  flex-direction: column;
-}
-
-.dashboardHeader {
-  background: white;
-  padding: var(--spacing-md) var(--spacing-lg);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
 }
 
-.dashboardTitle {
-  font-size: var(--text-xl);
+.statNumber {
+  font-size: var(--text-3xl);
+  font-weight: 700;
   color: var(--color-text);
-  margin: 0;
-}
-
-.userInfo {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-md);
-}
-
-.userEmail {
-  color: #4b5563;
-  font-size: var(--text-sm);
-}
-
-.dashboardContent {
-  flex: 1;
-  padding: var(--spacing-lg);
-  max-width: 1280px;
-  width: 100%;
-  margin: 0 auto;
+  margin: var(--spacing-xs) 0 0 0;
 }
 
 .welcomeCard {
@@ -66,18 +37,10 @@
 
 /* md: 768px以上 */
 @media (min-width: 768px) {
-  .dashboardHeader {
-    padding: var(--spacing-lg) var(--spacing-xl);
+  .statsGrid {
+    grid-template-columns: repeat(4, 1fr);
   }
-  
-  .dashboardTitle {
-    font-size: var(--text-2xl);
-  }
-  
-  .dashboardContent {
-    padding: var(--spacing-xl);
-  }
-  
+
   .welcomeTitle {
     font-size: var(--text-2xl);
   }
