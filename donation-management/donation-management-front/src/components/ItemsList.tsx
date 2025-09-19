@@ -1,4 +1,5 @@
 import type { DonationItem, ItemStatus } from '../types'
+import { ITEM_CATEGORIES, ITEM_STATUSES } from '../constants/options'
 import PageLayout from './PageLayout'
 import Button from './ui/Button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './ui/Card'
@@ -73,20 +74,22 @@ export default function ItemsList({
                 onChange={(e) => onCategoryChange(e.target.value)}
               >
                 <option value="all">全カテゴリ</option>
-                <option value="書籍">書籍</option>
-                <option value="備品">備品</option>
-                <option value="電子機器">電子機器</option>
-                <option value="家具">家具</option>
-                <option value="その他">その他</option>
+                {ITEM_CATEGORIES.map(category => (
+                  <option key={category.value} value={category.value}>
+                    {category.label}
+                  </option>
+                ))}
               </Select>
               <Select
                 value={statusFilter}
                 onChange={(e) => onStatusChange(e.target.value)}
               >
                 <option value="all">全ステータス</option>
-                <option value="利用可能">利用可能</option>
-                <option value="使用中">使用中</option>
-                <option value="廃棄予定">廃棄予定</option>
+                {ITEM_STATUSES.map(status => (
+                  <option key={status.value} value={status.value}>
+                    {status.label}
+                  </option>
+                ))}
               </Select>
             </div>
           </div>

@@ -1,11 +1,11 @@
 import { useState, useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
+import { useAppNavigation } from '../hooks/useAppNavigation'
 import type { ItemFormData } from '../types'
 import ItemRegister from '../components/ItemRegister'
 
 export default function ItemRegisterContainer() {
-  const navigate = useNavigate()
+  const { goToItems } = useAppNavigation()
   const { user } = useAuth()
   const [formData, setFormData] = useState<ItemFormData>({
     itemName: '',
@@ -92,7 +92,7 @@ export default function ItemRegisterContainer() {
       // toast.success('寄贈物を登録しました')
 
       // 成功後、一覧ページへ遷移
-      navigate('/items')
+      goToItems()
     } catch (error) {
       console.error('Error submitting form:', error)
       // TODO: エラーハンドリングの改善
@@ -100,15 +100,15 @@ export default function ItemRegisterContainer() {
     } finally {
       setLoading(false)
     }
-  }, [navigate, validateForm])
+  }, [goToItems, validateForm])
 
   const handleCancel = useCallback(() => {
-    navigate('/items')
-  }, [navigate])
+    goToItems()
+  }, [goToItems])
 
   const handleBack = useCallback(() => {
-    navigate('/items')
-  }, [navigate])
+    goToItems()
+  }, [goToItems])
 
   // ユーザー情報がない場合は処理しない
   if (!user) {

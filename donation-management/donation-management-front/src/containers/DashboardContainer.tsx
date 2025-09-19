@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useAppNavigation } from '../hooks/useAppNavigation'
 import Dashboard from '../components/Dashboard'
 
 interface DashboardStats {
@@ -16,7 +16,7 @@ const QUICK_ACTIONS = [
 ] as const
 
 export default function DashboardContainer() {
-  const navigate = useNavigate()
+  const { navigate } = useAppNavigation()
   const [stats, setStats] = useState<DashboardStats | null>(null)
   const [loading, setLoading] = useState(true)
 

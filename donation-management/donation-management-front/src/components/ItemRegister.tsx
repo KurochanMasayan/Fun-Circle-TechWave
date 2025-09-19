@@ -1,5 +1,6 @@
 import type { User } from '@supabase/supabase-js'
 import type { ItemFormData } from '../types'
+import { ITEM_CATEGORIES, ITEM_CONDITIONS, STORAGE_LOCATIONS } from '../constants/options'
 import PageLayout from './PageLayout'
 import Button from './ui/Button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './ui/Card'
@@ -65,11 +66,11 @@ export default function ItemRegister({
                     fullWidth
                   >
                     <option value="">カテゴリを選択</option>
-                    <option value="書籍">書籍</option>
-                    <option value="備品">備品</option>
-                    <option value="電子機器">電子機器</option>
-                    <option value="家具">家具</option>
-                    <option value="その他">その他</option>
+                    {ITEM_CATEGORIES.map(category => (
+                      <option key={category.value} value={category.value}>
+                        {category.label}
+                      </option>
+                    ))}
                   </Select>
                 </div>
 
@@ -118,12 +119,7 @@ export default function ItemRegister({
                     <span className={styles.errorMessage}>{errors.condition}</span>
                   )}
                   <div className={styles.radioGroup}>
-                    {[
-                      { value: '優良', label: '優良（ほぼ新品）' },
-                      { value: '良好', label: '良好（軽微な使用感）' },
-                      { value: '普通', label: '普通（使用感あり）' },
-                      { value: '要修理', label: '要修理（動作に問題あり）' },
-                    ].map(option => (
+                    {ITEM_CONDITIONS.map(option => (
                       <label key={option.value} className={styles.radioLabel}>
                         <input
                           type="radio"
@@ -156,11 +152,11 @@ export default function ItemRegister({
                     fullWidth
                   >
                     <option value="">保管場所を選択</option>
-                    <option value="書庫A-1">書庫A-1</option>
-                    <option value="書庫A-2">書庫A-2</option>
-                    <option value="書庫B-1">書庫B-1</option>
-                    <option value="倉庫B-3">倉庫B-3</option>
-                    <option value="倉庫C-1">倉庫C-1</option>
+                    {STORAGE_LOCATIONS.map(location => (
+                      <option key={location.value} value={location.value}>
+                        {location.label}
+                      </option>
+                    ))}
                   </Select>
                   <Input
                     label="数量"

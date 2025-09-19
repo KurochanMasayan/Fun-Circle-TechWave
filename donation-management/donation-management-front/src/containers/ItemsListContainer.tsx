@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useAppNavigation } from '../hooks/useAppNavigation'
 import type { DonationItem } from '../types'
 import ItemsList from '../components/ItemsList'
 
@@ -69,7 +69,7 @@ const SAMPLE_ITEMS: DonationItem[] = [
 ]
 
 export default function ItemsListContainer() {
-  const navigate = useNavigate()
+  const { goToItemRegister, goToItemDetail } = useAppNavigation()
   const [searchQuery, setSearchQuery] = useState('')
   const [categoryFilter, setCategoryFilter] = useState<string>('all')
   const [statusFilter, setStatusFilter] = useState<string>('all')
@@ -90,8 +90,8 @@ export default function ItemsListContainer() {
   }, [items, searchQuery, categoryFilter, statusFilter])
 
   const handleRegister = useCallback(() => {
-    navigate('/items/register')
-  }, [navigate])
+    goToItemRegister()
+  }, [goToItemRegister])
 
   const handleSearch = useCallback((query: string) => {
     setSearchQuery(query)
@@ -105,10 +105,9 @@ export default function ItemsListContainer() {
     setStatusFilter(status)
   }, [])
 
-  const handleItemClick = useCallback((_itemId: number) => {
+  const handleItemClick = useCallback((itemId: number) => {
     // TODO: 詳細ページの実装
-    // navigate(`/items/${_itemId}`)
-    // console.log('Item clicked:', _itemId)
+    // goToItemDetail(itemId)
   }, [])
 
   return (
