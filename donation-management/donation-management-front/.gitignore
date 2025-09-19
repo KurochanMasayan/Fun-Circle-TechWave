@@ -18,20 +18,8 @@ dist-ssr
 .env.production
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-!.vscode/settings.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+# (OS/エディタ固有のファイルはルートの.gitignoreで管理)
 
 # wrangler files
 .wrangler
 .dev.vars*
-
-# MCP configuration
-.mcp.json
