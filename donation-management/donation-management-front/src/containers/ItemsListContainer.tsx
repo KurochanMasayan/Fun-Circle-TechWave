@@ -69,7 +69,7 @@ const SAMPLE_ITEMS: DonationItem[] = [
 ]
 
 export default function ItemsListContainer() {
-  const { goToItemRegister, goToItemDetail } = useAppNavigation()
+  const { goToItemRegister } = useAppNavigation()
   const [searchQuery, setSearchQuery] = useState('')
   const [categoryFilter, setCategoryFilter] = useState<string>('all')
   const [statusFilter, setStatusFilter] = useState<string>('all')
@@ -105,9 +105,10 @@ export default function ItemsListContainer() {
     setStatusFilter(status)
   }, [])
 
-  const handleItemClick = useCallback((itemId: number) => {
+  const handleItemClick = useCallback((_itemId: number) => {
     // TODO: 詳細ページの実装
-    // goToItemDetail(itemId)
+    // const { goToItemDetail } = useAppNavigation()
+    // goToItemDetail(_itemId)
   }, [])
 
   return (
