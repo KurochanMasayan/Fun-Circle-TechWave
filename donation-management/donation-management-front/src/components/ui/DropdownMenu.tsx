@@ -36,8 +36,8 @@ interface DropdownMenuSeparatorProps {
 interface DropdownContextType {
   isOpen: boolean
   setIsOpen: (open: boolean) => void
-  contentRef: React.RefObject<HTMLDivElement>
-  triggerRef: React.RefObject<HTMLElement>
+  contentRef: React.RefObject<HTMLDivElement | null>
+  triggerRef: React.RefObject<HTMLDivElement | null>
 }
 
 const DropdownContext = createContext<DropdownContextType | null>(null)
@@ -52,8 +52,8 @@ function useDropdownContext() {
 
 export function DropdownMenu({ children }: DropdownMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const contentRef = useRef<HTMLDivElement>(null)
-  const triggerRef = useRef<HTMLElement>(null)
+  const contentRef = useRef<HTMLDivElement | null>(null)
+  const triggerRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     const handleClickOutside = (event: Event) => {
@@ -112,7 +112,7 @@ export function DropdownMenuTrigger({ children, asChild }: DropdownMenuTriggerPr
     const child = children as React.ReactElement
     return (
       <div
-        ref={triggerRef}
+        ref={triggerRef as React.RefObject<HTMLDivElement>}
         onClick={handleClick}
         className={styles.dropdownTrigger}
         role="button"
@@ -132,15 +132,23 @@ export function DropdownMenuTrigger({ children, asChild }: DropdownMenuTriggerPr
   }
 
   return (
-    <button
-      ref={triggerRef}
+    <div
+      ref={triggerRef as React.RefObject<HTMLDivElement>}
       onClick={handleClick}
       className={styles.dropdownTrigger}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          setIsOpen(!isOpen)
+        }
+      }}
       aria-expanded={isOpen}
       aria-haspopup="menu"
     >
       {children}
-    </button>
+    </div>
   )
 }
 
