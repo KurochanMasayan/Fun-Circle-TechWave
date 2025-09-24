@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import type { Session } from '@supabase/supabase-js'
 import { supabase } from './lib/supabase'
 import AuthComponent from './components/Auth'
+import DonationSearch from './components/DonationSearch'
 import './App.css'
 
 function App() {
@@ -30,11 +31,20 @@ function App() {
         </div>
       ) : (
         <div className="dashboard">
-          <h1>Welcome to Donation Management</h1>
-          <p>Logged in as: {session.user.email}</p>
-          <button onClick={() => supabase.auth.signOut()}>
-            Sign Out
-          </button>
+          <header className="app-header">
+            <div className="header-content">
+              <h1>社内寄贈物管理システム</h1>
+              <div className="user-info">
+                <span>ログイン中: {session.user.email}</span>
+                <button onClick={() => supabase.auth.signOut()} className="sign-out-btn">
+                  ログアウト
+                </button>
+              </div>
+            </div>
+          </header>
+          <main className="app-main">
+            <DonationSearch />
+          </main>
         </div>
       )}
     </div>

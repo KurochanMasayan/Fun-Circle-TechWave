@@ -1,0 +1,40 @@
+.donation-search {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.search-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e1e5e9;
+}
+
+.search-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2328;
+  margin: 0 0 0.5rem 0;
+}
+
+.search-header p {
+  font-size: 1rem;
+  color: #6c757d;
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .donation-search {
+    padding: 1rem 0.5rem;
+  }
+  
+  .search-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .search-header p {
+    font-size: 0.875rem;
+  }
+}
