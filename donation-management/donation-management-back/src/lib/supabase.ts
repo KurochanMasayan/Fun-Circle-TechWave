@@ -49,6 +49,135 @@ export type Database = {
           updated_at?: string;
         };
       };
+      donations: {
+        Row: {
+          id: string;
+          title: string;
+          category_id: string;
+          sub_category_id: string | null;
+          donor_name: string | null;
+          donated_date: string;
+          location_id: string;
+          status: string;
+          description: string | null;
+          isbn: string | null;
+          author: string | null;
+          publisher: string | null;
+          published_year: number | null;
+          manufacturer: string | null;
+          model_number: string | null;
+          condition: string | null;
+          created_by: string;
+          updated_by: string | null;
+          created_at: string;
+          updated_at: string;
+          deleted_at: string | null;
+        };
+        Insert: {
+          id?: string;
+          title: string;
+          category_id: string;
+          sub_category_id?: string | null;
+          donor_name?: string | null;
+          donated_date: string;
+          location_id: string;
+          status?: string;
+          description?: string | null;
+          isbn?: string | null;
+          author?: string | null;
+          publisher?: string | null;
+          published_year?: number | null;
+          manufacturer?: string | null;
+          model_number?: string | null;
+          condition?: string | null;
+          created_by: string;
+          updated_by?: string | null;
+          created_at?: string;
+          updated_at?: string;
+          deleted_at?: string | null;
+        };
+        Update: {
+          id?: string;
+          title?: string;
+          category_id?: string;
+          sub_category_id?: string | null;
+          donor_name?: string | null;
+          donated_date?: string;
+          location_id?: string;
+          status?: string;
+          description?: string | null;
+          isbn?: string | null;
+          author?: string | null;
+          publisher?: string | null;
+          published_year?: number | null;
+          manufacturer?: string | null;
+          model_number?: string | null;
+          condition?: string | null;
+          created_by?: string;
+          updated_by?: string | null;
+          created_at?: string;
+          updated_at?: string;
+          deleted_at?: string | null;
+        };
+      };
+      categories: {
+        Row: {
+          id: string;
+          name: string;
+          description: string | null;
+          display_order: number;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+          description?: string | null;
+          display_order?: number;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          name?: string;
+          description?: string | null;
+          display_order?: number;
+          created_at?: string;
+          updated_at?: string;
+        };
+      };
+      locations: {
+        Row: {
+          id: string;
+          name: string;
+          building: string | null;
+          floor: string | null;
+          room: string | null;
+          shelf: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+          building?: string | null;
+          floor?: string | null;
+          room?: string | null;
+          shelf?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          name?: string;
+          building?: string | null;
+          floor?: string | null;
+          room?: string | null;
+          shelf?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+      };
     };
   };
 }; 

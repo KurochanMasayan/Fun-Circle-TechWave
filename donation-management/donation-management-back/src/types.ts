@@ -16,3 +16,24 @@ export const Task = z.object({
 	completed: z.boolean().default(false),
 	due_date: DateTime(),
 });
+
+export const Donation = z.object({
+	id: Str({ required: false }),
+	title: Str({ example: "プログラミング入門書" }),
+	category_id: Str(),
+	sub_category_id: Str({ required: false }),
+	donor_name: Str({ required: false }),
+	donated_date: Str(),
+	location_id: Str(),
+	status: Str({ example: "available" }).default("available"),
+	description: Str({ required: false }),
+	isbn: Str({ required: false }),
+	author: Str({ required: false }),
+	publisher: Str({ required: false }),
+	published_year: z.number().optional(),
+	manufacturer: Str({ required: false }),
+	model_number: Str({ required: false }),
+	condition: Str({ required: false }),
+	created_by: Str(),
+	updated_by: Str({ required: false }),
+});
