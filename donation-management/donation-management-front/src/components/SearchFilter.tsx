@@ -38,7 +38,7 @@ export default function SearchFilter({ filters, onFiltersChange }: SearchFilterP
     loadFilterData();
   }, []);
 
-  const handleInputChange = (field: keyof SearchFilters, value: any) => {
+  const handleInputChange = (field: keyof SearchFilters, value: SearchFilters[keyof SearchFilters]) => {
     const newFilters = { ...filters, [field]: value };
     
     // Reset sub_category_id when category_id changes
