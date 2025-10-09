@@ -1,68 +1,98 @@
-import type { User } from '@supabase/supabase-js'
-import { useNavigate } from 'react-router-dom'
 import Button from './ui/Button'
 import { Card, CardContent } from './ui/Card'
+import PageLayout from './PageLayout'
 import styles from './Dashboard.module.css'
 
-interface DashboardProps {
-  user: User
-  onSignOut: () => void
+interface DashboardStats {
+  totalItems: number
+  availableItems: number
+  inUseItems: number
+  recentRegistrations: number
 }
 
-const QUICK_ACTIONS = [
-  { label: '寄贈物を登録', variant: 'primary' as const, path: '/items/register' },
-  { label: '寄贈物一覧を見る', variant: 'secondary' as const, path: '/items' },
-  { label: 'レポートを確認', variant: 'secondary' as const, path: '/reports' },
-] as const
+interface QuickAction {
+  label: string
+  variant: 'primary' | 'secondary'
+  path: string
+}
 
-export default function Dashboard({ user, onSignOut }: DashboardProps) {
-  const navigate = useNavigate()
-  
-  const handleAction = (path: string) => {
-    navigate(path)
-  }
+interface DashboardProps {
+  stats: DashboardStats | null
+  loading: boolean
+  quickActions: readonly QuickAction[]
+  onQuickAction: (path: string) => void
+}
+
+export default function Dashboard({
+  stats,
+  loading,
+  quickActions,
+  onQuickAction
+}: DashboardProps) {
 
   return (
-    <div className={styles.dashboard}>
-      <header className={styles.dashboardHeader}>
-        <h1 className={styles.dashboardTitle}>寄贈物管理ダッシュボード</h1>
-        <div className={styles.userInfo}>
-          <span className={styles.userEmail}>{user.email}</span>
-          <Button
-            variant="danger"
-            size="small"
-            onClick={onSignOut}
-          >
-            ログアウト
-          </Button>
+    <PageLayout
+      title="ダッシュボード"
+      description="システム概要と最新情報"
+    >
+      {/* TODO: ダッシュボード統計カードの実装 */}
+      {stats && !loading && (
+        <div className={styles.statsGrid}>
+          <Card>
+            <CardContent>
+              <h3>総登録数</h3>
+              <p className={styles.statNumber}>{stats.totalItems}</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent>
+              <h3>利用可能</h3>
+              <p className={styles.statNumber}>{stats.availableItems}</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent>
+              <h3>使用中</h3>
+              <p className={styles.statNumber}>{stats.inUseItems}</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent>
+              <h3>今月の新規登録</h3>
+              <p className={styles.statNumber}>{stats.recentRegistrations}</p>
+            </CardContent>
+          </Card>
         </div>
-      </header>
-      
-      <main className={styles.dashboardContent}>
-        <Card className={styles.welcomeCard}>
-          <CardContent>
-            <h2 className={styles.welcomeTitle}>
-              ようこそ、社内寄贈物管理システムへ
-            </h2>
-            <p className={styles.welcomeDescription}>
-              このシステムを使用して、社内の書籍や備品の寄贈・共有を効率的に管理できます。
-            </p>
-            
-            <div className={styles.quickActions}>
-              {QUICK_ACTIONS.map((action) => (
-                <Button
-                  key={action.path}
-                  variant={action.variant}
-                  size="medium"
-                  onClick={() => handleAction(action.path)}
-                >
-                  {action.label}
-                </Button>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </main>
-    </div>
+      )}
+
+      <Card className={styles.welcomeCard}>
+        <CardContent>
+          <h2 className={styles.welcomeTitle}>
+            ようこそ、社内寄贈物管理システムへ
+          </h2>
+          <p className={styles.welcomeDescription}>
+            このシステムを使用して、社内の書籍や備品の寄贈・共有を効率的に管理できます。
+          </p>
+
+          <div className={styles.quickActions}>
+            {quickActions.map((action) => (
+              <Button
+                key={action.path}
+                variant={action.variant}
+                size="medium"
+                onClick={() => onQuickAction(action.path)}
+                disabled={loading}
+              >
+                {action.label}
+              </Button>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* TODO: 最近の活動フィードの実装 */}
+      {/* TODO: 人気の寄贈物ランキングの実装 */}
+      {/* TODO: お知らせ・アナウンスエリアの実装 */}
+    </PageLayout>
   )
 }

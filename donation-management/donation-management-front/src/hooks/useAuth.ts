@@ -25,7 +25,16 @@ export function useAuth() {
   }, [])
 
   const signOut = async () => {
-    await supabase.auth.signOut()
+    try {
+      const { error } = await supabase.auth.signOut()
+      if (error) {
+        console.error('ログアウトエラー:', error)
+        throw error
+      }
+    } catch (error) {
+      console.error('ログアウト処理でエラーが発生しました:', error)
+      throw error
+    }
   }
 
   return {
