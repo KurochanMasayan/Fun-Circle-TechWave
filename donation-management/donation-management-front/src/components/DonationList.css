@@ -1,0 +1,250 @@
+.donation-list {
+  margin-top: 1rem;
+}
+
+.loading-state, .error-state, .empty-state {
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  border: 1px solid #e1e5e9;
+  border-radius: 8px;
+}
+
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #0969da;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-state {
+  color: #d73a49;
+}
+
+.empty-state {
+  color: #6c757d;
+}
+
+.results-summary {
+  margin-bottom: 1rem;
+  color: #6c757d;
+  font-size: 0.875rem;
+}
+
+.donation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.donation-card {
+  background: white;
+  border: 1px solid #e1e5e9;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.donation-card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.donation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.donation-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2328;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.status-available {
+  background-color: #d1f7d1;
+  color: #0d5016;
+}
+
+.status-lending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-maintenance {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.status-lost {
+  background-color: #e2e3e5;
+  color: #495057;
+}
+
+.donation-meta {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.meta-item {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.meta-label {
+  color: #6c757d;
+  font-weight: 500;
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.meta-value {
+  color: #1f2328;
+  flex: 1;
+}
+
+.donation-ratings {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.rating {
+  color: #d73a49;
+  font-weight: 500;
+}
+
+.review-count {
+  color: #6c757d;
+}
+
+.donation-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-primary {
+  padding: 0.5rem 1rem;
+  background-color: #0969da;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #0553ba;
+}
+
+.btn-primary:disabled {
+  background-color: #8b949e;
+  cursor: not-allowed;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 2rem;
+}
+
+.pagination-btn {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d0d7de;
+  background-color: white;
+  color: #1f2328;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+  min-width: 44px;
+  text-align: center;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: #f6f8fa;
+  border-color: #8b949e;
+}
+
+.pagination-btn:disabled {
+  color: #8b949e;
+  cursor: not-allowed;
+  background-color: #f6f8fa;
+}
+
+.pagination-btn.active {
+  background-color: #0969da;
+  color: white;
+  border-color: #0969da;
+}
+
+.pagination-ellipsis {
+  padding: 0.5rem;
+  color: #8b949e;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .donation-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .donation-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .status-badge {
+    align-self: flex-start;
+  }
+  
+  .pagination {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .pagination-btn {
+    min-width: 36px;
+    padding: 0.4rem 0.6rem;
+  }
+}
